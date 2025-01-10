@@ -1,6 +1,6 @@
 {
   "name": "easylink",
-  "version": "0.2.1",
+  "version": "0.0.0",
   "description": "",
   "type": "module",
   "private": true,
@@ -42,10 +42,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/naaiyy/Easylink.git"
+    "url": "git+https://github.com/naaiyy/Easylink3.git"
   },
   "bugs": {
-    "url": "https://github.com/naaiyy/Easylink/issues"
+    "url": "https://github.com/naaiyy/Easylink3/issues"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.6.1",
@@ -64,6 +64,7 @@
     "prettier": "^3.4.2",
     "semantic-release": "^24.2.1",
     "typedoc": "^0.27.6",
-    "typescript": "^5.7.2"
+    "typedoc-plugin-markdown": "^4.0.0",
+    "typescript": "^5.7.3"
   }
 }
