@@ -1,0 +1,19 @@
+{
+  "entryPointStrategy": "packages",
+  "entryPoints": [
+    "packages/frontend/src",
+    "packages/backend/src",
+    "packages/shared/src"
+  ],
+  "out": "docs",
+  "excludePrivate": true,
+  "excludeProtected": true,
+  "excludeExternals": true,
+  "theme": "default",
+  "categorizeByGroup": true,
+  "categoryOrder": ["Core", "Models", "Services", "Controllers", "*"],
+  "searchInComments": true,
+  "plugin": ["typedoc-plugin-markdown"],
+  "readme": "README.md",
+  "name": "Easylink API Documentation"
+}

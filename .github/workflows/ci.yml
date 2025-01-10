@@ -1,0 +1,86 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main, staging, development]
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  validate:
+    name: Validate and Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Required for commitlint to access commit history
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.8.1'
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: '8'
+          run_install: false
+
+      - name: Get pnpm store directory
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - name: Setup pnpm cache
+        uses: actions/cache@v3
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Validate commit messages
+        uses: wagoid/commitlint-github-action@v5
+        with:
+          configFile: ./commitlint.config.js
+          failOnWarnings: true
+          commitDepth: 10
+
+      - name: Check code formatting
+        run: |
+          echo "Running Prettier check..."
+          pnpm prettier --check .
+
+      - name: Run ESLint
+        run: |
+          echo "Running ESLint..."
+          pnpm eslint . --max-warnings 0
+
+      - name: Type check
+        run: |
+          echo "Running TypeScript checks..."
+          pnpm tsc --noEmit || exit 0  # Make it optional during initial setup
+
+      - name: Generate documentation
+        run: |
+          echo "Generating TypeDoc documentation..."
+          pnpm typedoc || exit 0  # Make it optional during initial setup
+        continue-on-error: true
+
+      # We'll enable this later when we have actual documentation
+      # - name: Upload documentation artifacts
+      #   if: success()
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: documentation
+      #     path: docs/
+      #     retention-days: 30
