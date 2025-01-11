@@ -49,7 +49,7 @@ export interface JWTPayload {
 export interface ApiError {
   code: string;
   message: string;
-  details?: Record<string, any>;
+  details?: Record<string, unknown>;
 }
 
 export interface ApiMetadata {
