@@ -1,93 +1,174 @@
 # @easylink/backend
 
-> NestJS-based backend service for the Easylink platform.
+NestJS backend service for the Easylink platform.
 
-## Overview
+## 🛠 Tech Stack
 
-This package serves as the main API server for Easylink, handling core business logic, data persistence, and integration with external services.
+- **Framework:** NestJS
+- **Database:** PostgreSQL with Prisma
+- **Caching:** Redis
+- **Cloud:** AWS Lambda
+- **API Documentation:** OpenAPI/Swagger
+- **Testing:** Jest & Supertest
+- **Types:** TypeScript
 
-## 📦 Package Structure
+## 🔄 Integration with @easylink/shared
 
-```
-backend/
-├── src/
-│   ├── config/         # Environment and app configuration
-│   ├── modules/        # Feature modules (users, jobs, etc.)
-│   ├── shared/         # Shared utilities, filters, interceptors
-│   │   ├── filters/    # Exception filters
-│   │   └── interceptors/ # Response transformers
-│   └── types/          # TypeScript type definitions
-├── test/              # End-to-end tests
-└── package.json       # Package configuration
-```
+This package integrates with `@easylink/shared` for:
 
-## 🔧 Configuration
+- Common type definitions
+- Shared utilities
+- Validation schemas
+- Constants
 
-- **TypeScript**: Strict mode enabled with path aliases
-- **ESLint**: Extended from root config with NestJS-specific rules
-- **Prettier**: Code formatting rules
-- **Jest**: Unit and integration testing setup
-- **NestJS CLI**: Development and build tooling
-
-## 🛠 Development Scripts
+## 📦 Installation
 
 ```bash
-# Development
-pnpm start         # Start the server
-pnpm start:dev     # Start with hot-reload
-pnpm start:debug   # Start with debugging
-
-# Building
-pnpm build         # Production build
-pnpm build:watch   # Watch mode build
-
-# Testing
-pnpm test          # Run unit tests
-pnpm test:watch    # Watch mode testing
-pnpm test:cov      # Test coverage
-pnpm test:debug    # Debug tests
-pnpm test:e2e      # End-to-end tests
-
-# Utilities
-pnpm clean         # Clean build outputs
-pnpm format        # Format code
-pnpm lint          # Lint code
+pnpm install
 ```
 
-## 🔐 Error Handling
+## 🚀 Development
 
-The backend implements a robust error handling system:
+```bash
+# Watch mode
+pnpm start:dev
 
-- HTTP Exception Filter for standardized error responses
-- Transform Interceptor for consistent response formatting
+# Production build
+pnpm build
 
-## 🔄 CI/CD Integration
+# Production start
+pnpm start
 
-The package is integrated with the project's CI/CD pipeline:
+# Lint
+pnpm lint
 
-- Automated testing in GitHub Actions
-- Type checking in release workflow
-- Version management via semantic-release
+# Type check
+pnpm type-check
 
-## 📚 Dependencies
+# Run tests
+pnpm test
 
-Core dependencies:
+# Run e2e tests
+pnpm test:e2e
+```
 
-- `@nestjs/common`: ^10.0.0
-- `@nestjs/core`: ^10.0.0
-- `@nestjs/platform-express`: ^10.0.0
-- `reflect-metadata`: ^0.1.13
-- `rxjs`: ^7.8.1
+## 🏗 Architecture
 
-Dev dependencies are managed at the workspace level for consistency.
+- **API Gateway** - NestJS/AWS
+- **Database Layer** - Prisma/PostgreSQL
+- **Caching Layer** - Redis
+- **Serverless Functions** - AWS Lambda
+- **Monitoring** - Datadog/Prometheus
+- **Security** - Helmet/CORS/Rate Limiting
+
+## 🔒 Security Features
+
+1. **API Security**
+
+   - Helmet for HTTP headers
+   - CORS configuration
+   - Rate limiting
+   - JWT authentication
+
+2. **Data Security**
+   - Input validation
+   - Request sanitization
+   - SQL injection protection (via Prisma)
+
+## 📊 Monitoring & Logging
+
+- Datadog integration
+- Prometheus metrics
+- AWS CloudWatch
+- Structured logging
+
+## 🔗 Dependencies
+
+### Production Dependencies
+
+- `@easylink/shared`: Shared utilities and types
+- NestJS core packages:
+  - `@nestjs/common`
+  - `@nestjs/core`
+  - `@nestjs/config`
+  - `@nestjs/platform-express`
+  - `@nestjs/swagger`
+  - `@nestjs/throttler`
+  - `@nestjs/schedule`
+- Database & Cache:
+  - `@prisma/client`
+  - `redis`/`ioredis`
+- AWS:
+  - `@aws-sdk/client-lambda`
+- Security:
+  - `helmet`
+  - `class-validator`
+  - `class-transformer`
+- Validation:
+  - `zod`
+
+### Development Dependencies
+
+- Testing:
+  - `jest`
+  - `supertest`
+  - `@nestjs/testing`
+- Build tools:
+  - `@nestjs/cli`
+  - `@nestjs/schematics`
+- Database:
+  - `prisma`
+- Code quality:
+  - `eslint`
+  - `prettier`
+  - `typescript`
+
+## 🔄 API Versioning
+
+API versioning is handled through NestJS built-in versioning:
+
+```typescript
+@Controller({
+  version: '1',
+})
+export class UserController {}
+```
+
+## ⚡ Performance Optimizations
+
+1. **Caching Strategy**
+
+   - Redis for high-performance caching
+   - Cached responses for frequent queries
+   - Cache invalidation patterns
+
+2. **Database Optimization**
+
+   - Prisma query optimization
+   - Proper indexing
+   - Connection pooling
+
+3. **Request Handling**
+   - Rate limiting
+   - Request queuing
+   - Compression
 
 ## 🤝 Contributing
 
-1. Follow the TypeScript guidelines in `tsconfig.json`
-2. Ensure tests pass: `pnpm test`
-3. Format code: `pnpm format`
-4. Submit a PR following the project's guidelines
+1. Code Standards:
 
-## 📝 License
+   - Follow NestJS best practices
+   - Use dependency injection
+   - Write unit tests
+   - Document APIs
 
-See the root package's LICENSE file.
+2. Testing Requirements:
+   - Unit tests for services
+   - E2E tests for APIs
+   - Integration tests for external services
+
+## 📚 Resources
+
+- [NestJS Documentation](https://docs.nestjs.com)
+- [Prisma Documentation](https://www.prisma.io/docs)
+- [AWS Lambda Documentation](https://docs.aws.amazon.com/lambda)
