@@ -1,3 +1,9 @@
+## [1.0.1](https://github.com/naaiyy/Easylink3/compare/v1.0.0...v1.0.1) (2025-01-11)
+
+### Bug Fixes
+
+- **root:** Add source maps and enhance monorepo configuration ([a3334f1](https://github.com/naaiyy/Easylink3/commit/a3334f16302b84eb2f8b03447f4a4332b38286b9))
+
 # 1.0.0 (2025-01-10)
 
 ### Bug Fixes
