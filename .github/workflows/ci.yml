@@ -28,6 +28,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       cache-hit: ${{ steps.cache-dependencies.outputs.cache-hit }}
+
       setup-time: ${{ steps.timing.outputs.timing }}
     steps:
       - uses: actions/checkout@v4
@@ -83,6 +84,7 @@ jobs:
     needs: setup
     name: Lint and Format
     runs-on: ubuntu-latest
+
     outputs:
       lint-time: ${{ steps.timing.outputs.timing }}
     steps:
