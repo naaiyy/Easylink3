@@ -84,6 +84,8 @@ jobs:
           GH_TOKEN: ${{ steps.generate_token.outputs.token }}
         run: |
           echo "Starting release process..."
+          echo "Installing required semantic-release plugins..."
+          npm install -g @semantic-release/changelog @semantic-release/git @semantic-release/npm @semantic-release/release-notes-generator
           echo "Using Node.js version: $(node -v)"
           echo "Using npm version: $(npm -v)"
           echo "Current working directory: $(pwd)"
