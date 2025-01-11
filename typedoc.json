@@ -3,7 +3,11 @@
   "entryPoints": [
     "packages/frontend/src",
     "packages/backend/src",
-    "packages/shared/src"
+    "packages/shared/src",
+    "packages/admin-portal/src",
+    "packages/landing-page/src",
+    "packages/services/src",
+    "packages/microservices/src"
   ],
   "out": "docs",
   "excludePrivate": true,
