@@ -184,13 +184,10 @@ jobs:
         run: |
           echo "Type checking shared package..."
           pnpm --filter "@easylink/shared" type-check
-
           echo "Type checking ui package..."
           pnpm --filter "@easylink/ui" type-check
-
           echo "Type checking frontend package..."
           pnpm --filter "@easylink/frontend" type-check
-
           echo "Type checking backend package..."
           pnpm --filter "@easylink/backend" type-check
 
@@ -325,10 +322,8 @@ jobs:
           echo "Type Check Time: ${{ needs.type-check.outputs.type-check-time }}ms"
           echo "Test Time: ${{ needs.test.outputs.test-time }}ms"
           echo "Build Time: ${{ needs.build.outputs.build-time }}ms"
-
           TOTAL_TIME=$((${{ needs.setup.outputs.setup-time }} + ${{ needs.lint.outputs.lint-time }} + ${{ needs.type-check.outputs.type-check-time }} + ${{ needs.test.outputs.test-time }} + ${{ needs.build.outputs.build-time }}))
           echo "Total Time: ${TOTAL_TIME}ms"
-
           if [ $TOTAL_TIME -gt ${{ env.CI_PERFORMANCE_THRESHOLD_MS }} ]; then
             echo "⚠️ Warning: Total workflow time (${TOTAL_TIME}ms) exceeds threshold (${{ env.CI_PERFORMANCE_THRESHOLD_MS }}ms)"
           fi
