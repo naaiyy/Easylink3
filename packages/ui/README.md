@@ -1,195 +1,167 @@
 # @easylink/ui
 
-Modern, accessible UI components built with shadcn/ui and Tailwind CSS.
+A shared UI component library for the Easylink platform, built with shadcn/ui.
 
-## Structure
+## 🛠 Tech Stack
 
-```
-src/
-├── components/           # UI Components
-│   ├── core/            # Basic elements (Button, Input, etc.)
-│   ├── data-display/    # Tables, Lists, Cards
-│   ├── forms/           # Form-specific components
-│   ├── layout/          # Layout components
-│   ├── navigation/      # Navigation components
-│   └── feedback/        # Alerts, Toasts, Progress
-├── hooks/               # Custom React hooks
-│   ├── forms/           # Form-related hooks
-│   └── animation/       # Animation hooks
-├── themes/              # Theme configuration
-│   ├── tokens/          # Design tokens
-│   └── presets/         # Theme presets
-├── styles/              # Global styles
-└── lib/                 # Utilities
-```
+- **Framework:** React
+- **Styling:** TailwindCSS
+- **Types:** TypeScript
+- **Icons:** Radix Icons
+- **Utilities:**
+  - class-variance-authority
+  - clsx
+  - tailwind-merge
+  - tailwindcss-animate
 
-## Key Features
+## 🔄 Integration with @easylink/shared
 
-- Built on shadcn/ui principles
-- Full Tailwind CSS integration
-- Dark mode support
-- Responsive by default
-- Accessibility-first
-- Type-safe props
+This package integrates with `@easylink/shared` for:
 
-## Installation
+- Common type definitions
+- Shared utilities
+- Validation schemas
+- Constants
+
+## 📦 Installation
 
 ```bash
-# In your application
-pnpm add @easylink/ui
-```
-
-## Basic Usage
-
-1. **Setup in Next.js/React Application**
-
-```typescript
-// app/layout.tsx or similar
-import '@easylink/ui/styles/globals.css';
-```
-
-2. **Using Components**
-
-```typescript
-import { Button, Card, Input } from '@easylink/ui';
-
-// Basic usage
-<Button variant="primary">Click me</Button>
-
-// With all props
-<Button
-  variant="primary"
-  size="lg"
-  loading={false}
-  disabled={false}
-  onClick={() => {}}
->
-  Click me
-</Button>
-
-// Form elements
-<Input
-  type="text"
-  placeholder="Enter value"
-  error="This field is required"
-/>
-```
-
-3. **Using Hooks**
-
-```typescript
-import { useForm, useToast } from '@easylink/ui/hooks';
-
-// Form handling
-const { register, handleSubmit } = useForm();
-
-// Notifications
-const { toast } = useToast();
-toast.success('Operation completed');
-```
-
-4. **Theming**
-
-```typescript
-// Customize theme
-import { ThemeProvider } from '@easylink/ui';
-
-<ThemeProvider
-  theme={{
-    colors: {
-      primary: '#007AFF',
-      // ...
-    }
-  }}
->
-  <App />
-</ThemeProvider>
-```
-
-## Component Categories
-
-### Core Components
-
-- Button
-- Input
-- Select
-- Checkbox
-- Radio
-- Switch
-
-### Data Display
-
-- Table
-- Card
-- List
-- Badge
-- Avatar
-
-### Forms
-
-- Form
-- FormField
-- InputGroup
-- FileUpload
-
-### Layout
-
-- Container
-- Grid
-- Stack
-- Divider
-
-### Navigation
-
-- Tabs
-- Breadcrumb
-- Pagination
-- Menu
-
-### Feedback
-
-- Alert
-- Toast
-- Progress
-- Spinner
-
-## Development
-
-```bash
-# Install dependencies
 pnpm install
+```
 
-# Development mode
+## 🚀 Development
+
+```bash
+# Watch mode
 pnpm dev
 
-# Build package
+# Build
 pnpm build
 
-# Run tests
-pnpm test
+# Lint
+pnpm lint
 
-# Type checking
+# Type check
 pnpm type-check
 ```
 
-## Guidelines
+## 🧱 Components
 
-1. Component Creation:
+All components are built using shadcn/ui principles:
 
-   - Use shadcn/ui CLI for new components
-   - Follow accessibility guidelines
-   - Include proper TypeScript types
-   - Add comprehensive tests
+- **Inputs & Forms**
 
-2. Styling:
+  - Button
+  - Input
+  - Select
+  - Checkbox
+  - Radio
+  - Switch
+  - Textarea
 
-   - Use Tailwind CSS classes
-   - Follow design token system
-   - Support dark mode
-   - Ensure responsive design
+- **Layout**
 
-3. Documentation:
-   - Document all props
-   - Include usage examples
-   - Add accessibility notes
-   - Provide customization options
+  - Card
+  - Container
+  - Section
+  - Grid
+
+- **Feedback**
+
+  - Alert
+  - Toast
+  - Progress
+  - Spinner
+
+- **Navigation**
+
+  - Tabs
+  - Breadcrumb
+  - Pagination
+  - Menu
+
+- **Overlay**
+  - Modal
+  - Drawer
+  - Popover
+  - Tooltip
+
+## 📝 Usage
+
+```tsx
+import { Button, Input } from '@easylink/ui';
+
+export function MyComponent() {
+  return (
+    <div>
+      <Input placeholder="Enter text" />
+      <Button variant="primary">Submit</Button>
+    </div>
+  );
+}
+```
+
+## 🎨 Customization
+
+Components can be customized using:
+
+1. **Variants**
+
+   ```tsx
+   <Button variant="secondary" size="lg" />
+   ```
+
+2. **className prop**
+
+   ```tsx
+   <Card className="bg-custom-color" />
+   ```
+
+3. **TailwindCSS theme**
+   ```js
+   // tailwind.config.js
+   module.exports = {
+     theme: {
+       extend: {
+         // Your customizations
+       },
+     },
+   };
+   ```
+
+## 🔗 Dependencies
+
+### Production Dependencies
+
+- `@easylink/shared`: Shared utilities and types
+- `@radix-ui/react-icons`: Icon set
+- `class-variance-authority`: Component variants
+- `tailwindcss-animate`: Animation utilities
+
+### Development Dependencies
+
+- React & React DOM
+- TypeScript
+- TailwindCSS
+- Build tools (tsup)
+- Testing utilities
+
+## 🤝 Contributing
+
+1. Components should:
+
+   - Be fully typed
+   - Include proper documentation
+   - Follow shadcn/ui patterns
+   - Use shared types/utilities where applicable
+
+2. Testing:
+   - Include unit tests
+   - Test accessibility
+   - Test different variants
+
+## 📚 Resources
+
+- [shadcn/ui Documentation](https://ui.shadcn.com)
+- [TailwindCSS Documentation](https://tailwindcss.com)
+- [Radix UI Documentation](https://www.radix-ui.com)

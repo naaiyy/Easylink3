@@ -17,7 +17,11 @@
     "build": "pnpm --filter \"@easylink/*\" build",
     "clean": "pnpm --parallel --filter \"@easylink/*\" clean",
     "dev": "pnpm --parallel --filter \"@easylink/*\" dev",
-    "test": "pnpm --parallel --filter \"@easylink/*\" test"
+    "test": "pnpm --parallel --filter \"@easylink/*\" test",
+    "frontend:dev": "pnpm --filter \"@easylink/frontend\" dev",
+    "backend:dev": "pnpm --filter \"@easylink/backend\" start:dev",
+    "ui:dev": "pnpm --filter \"@easylink/ui\" dev",
+    "shared:dev": "pnpm --filter \"@easylink/shared\" dev"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
@@ -52,25 +56,16 @@
     "url": "https://github.com/naaiyy/Easylink3/issues"
   },
   "devDependencies": {
-    "@commitlint/cli": "^19.6.1",
-    "@commitlint/config-conventional": "17.8.1",
-    "@semantic-release/changelog": "^6.0.3",
-    "@semantic-release/exec": "^6.0.3",
-    "@semantic-release/git": "^10.0.1",
-    "@semantic-release/github": "^11.0.1",
-    "@semantic-release/npm": "^12.0.1",
-    "@types/node": "^20.17.12",
-    "@typescript-eslint/eslint-plugin": "^8.19.1",
-    "@typescript-eslint/parser": "^8.19.1",
-    "eslint": "^9.17.0",
+    "@commitlint/cli": "^18.4.3",
+    "@commitlint/config-conventional": "^18.4.3",
+    "@typescript-eslint/eslint-plugin": "^6.15.0",
+    "@typescript-eslint/parser": "^6.15.0",
+    "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
-    "husky": "^9.1.7",
-    "js-yaml": "^4.1.0",
-    "lint-staged": "^15.3.0",
-    "prettier": "^3.4.2",
-    "semantic-release": "^24.2.1",
-    "typedoc": "^0.27.6",
-    "typedoc-plugin-markdown": "^4.0.0",
-    "typescript": "^5.7.3"
+    "eslint-plugin-prettier": "^5.1.2",
+    "husky": "^9.0.6",
+    "lint-staged": "^15.2.0",
+    "prettier": "^3.1.1",
+    "typescript": "^5.3.3"
   }
 }

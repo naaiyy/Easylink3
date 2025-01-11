@@ -14,6 +14,73 @@ Easylink is transforming the traditional job search experience into a modern, st
 - **Smart Application Format**: Automatic conversion of applications to employer-preferred formats
 - **Complete HR Suite**: End-to-end recruitment and team management tools for employers
 
+## 📦 Package Structure
+
+```
+packages/
+├── shared/            # Shared utilities, types, and constants
+│   ├── types/        # Common TypeScript interfaces
+│   ├── utils/        # Shared utility functions
+│   └── validators/   # Shared validation schemas
+│
+├── ui/               # Shared UI component library
+│   ├── components/   # shadcn/ui components
+│   └── styles/      # TailwindCSS configurations
+│
+├── frontend/         # Next.js frontend application
+│   ├── app/         # App router pages
+│   ├── components/  # Frontend-specific components
+│   └── lib/        # Frontend utilities
+│
+└── backend/         # NestJS backend service
+    ├── src/        # Source code
+    └── test/       # Test files
+```
+
+## 🔄 Package Dependencies
+
+```mermaid
+graph TD
+    shared[shared] --> |types & utils| ui[ui]
+    shared --> |types & utils| frontend[frontend]
+    shared --> |types & utils| backend[backend]
+    ui --> |components| frontend
+```
+
+## 🛠 Technology Stack
+
+### Core Architecture
+
+- **Monorepo Management**: pnpm workspaces
+- **Type Safety**: TypeScript
+- **Code Quality**: ESLint, Prettier
+- **Testing**: Jest, Playwright
+- **Documentation**: TypeDoc
+- **CI/CD**: GitHub Actions
+
+### Frontend Layer
+
+- **Framework**: Next.js 14
+- **UI Components**: shadcn/ui
+- **Styling**: TailwindCSS
+- **State Management**: React Query
+- **Forms**: Zod validation
+
+### Backend Layer
+
+- **Framework**: NestJS
+- **Database**: PostgreSQL with Prisma
+- **Caching**: Redis
+- **API Documentation**: OpenAPI/Swagger
+- **Security**: Helmet, CORS, Rate Limiting
+
+### Infrastructure
+
+- **Cloud**: AWS (Lambda, API Gateway)
+- **Monitoring**: Datadog, Prometheus
+- **Logging**: AWS CloudWatch
+- **Email**: Resend
+
 ## 🛠 Technology Stack
 
 ### Core Architecture
