@@ -73,6 +73,13 @@ jobs:
       - uses: pnpm/action-setup@v2
         with:
           version: '8'
+
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
       - name: Restore cache
         uses: actions/cache@v3
         with:
@@ -82,6 +89,9 @@ jobs:
             **/.turbo
             **/.next/cache
           key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+
+      - name: Install dependencies
+        run: pnpm install
 
       - name: Check formatting
         run: pnpm prettier --check .
@@ -103,7 +113,6 @@ jobs:
     strategy:
       matrix:
         package: ['shared', 'ui', 'frontend', 'backend']
-      fail-fast: false
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -112,6 +121,13 @@ jobs:
       - uses: pnpm/action-setup@v2
         with:
           version: '8'
+
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
       - name: Restore cache
         uses: actions/cache@v3
         with:
@@ -122,9 +138,11 @@ jobs:
             **/.next/cache
           key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
 
-      - name: Type check ${{ matrix.package }}
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Type check
         run: pnpm --filter "@easylink/${{ matrix.package }}" type-check
-        continue-on-error: ${{ matrix.package == 'backend' }}
 
   test:
     needs: setup
@@ -138,6 +156,13 @@ jobs:
       - uses: pnpm/action-setup@v2
         with:
           version: '8'
+
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
       - name: Restore cache
         uses: actions/cache@v3
         with:
@@ -147,6 +172,9 @@ jobs:
             **/.turbo
             **/.next/cache
           key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+
+      - name: Install dependencies
+        run: pnpm install
 
       - name: Run tests
         run: pnpm test
@@ -164,6 +192,13 @@ jobs:
       - uses: pnpm/action-setup@v2
         with:
           version: '8'
+
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
       - name: Restore cache
         uses: actions/cache@v3
         with:
@@ -174,6 +209,9 @@ jobs:
             **/.next/cache
           key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
 
+      - name: Install dependencies
+        run: pnpm install
+
       - name: Build packages
         run: pnpm build
         continue-on-error: true
@@ -181,4 +219,3 @@ jobs:
       - name: Generate documentation
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: pnpm typedoc
-        continue-on-error: true
