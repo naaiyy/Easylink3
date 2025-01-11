@@ -2,6 +2,7 @@ import { readFileSync, writeFileSync } from 'fs';
 import { join } from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
+import { load } from 'js-yaml';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -15,7 +16,7 @@ if (!newVersion) {
 const rootDir = join(__dirname, '..');
 
 // Read workspace configuration
-const workspaceConfig = JSON.parse(
+const workspaceConfig = load(
   readFileSync(join(rootDir, 'pnpm-workspace.yaml'), 'utf8')
 );
 
@@ -24,7 +25,11 @@ const packagePaths = workspaceConfig.packages.filter(p => !p.startsWith('#'));
 
 // Update version in each package.json
 for (const packagePath of packagePaths) {
-  const packageJsonPath = join(rootDir, packagePath, 'package.json');
+  const packageJsonPath = join(
+    rootDir,
+    packagePath.replace('/*', ''),
+    'package.json'
+  );
   try {
     const packageJson = JSON.parse(readFileSync(packageJsonPath, 'utf8'));
     packageJson.version = newVersion;
