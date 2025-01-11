@@ -15,9 +15,19 @@
     }],
     "@semantic-release/release-notes-generator",
     "@semantic-release/changelog",
-    "@semantic-release/npm",
+    ["@semantic-release/exec", {
+      "prepareCmd": "node scripts/update-package-versions.js ${nextRelease.version}"
+    }],
+    ["@semantic-release/npm", {
+      "pkgRoot": ".",
+      "tarballDir": "dist"
+    }],
     ["@semantic-release/git", {
-      "assets": ["package.json", "CHANGELOG.md"],
+      "assets": [
+        "package.json",
+        "packages/*/package.json",
+        "CHANGELOG.md"
+      ],
       "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
     }],
     "@semantic-release/github"
