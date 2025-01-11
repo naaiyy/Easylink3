@@ -1,3 +1,10 @@
+## [1.0.4](https://github.com/naaiyy/Easylink3/compare/v1.0.3...v1.0.4) (2025-01-11)
+
+### Bug Fixes
+
+- **backend:** Fix type error in app config ([b64d320](https://github.com/naaiyy/Easylink3/commit/b64d32019d541a6f47d82da709960581ec5d26ff))
+- **backend:** Setup NestJS backend package structure and configuration ([57c92c1](https://github.com/naaiyy/Easylink3/commit/57c92c10cbf7ac84dbfc18a6b3cdd1a9587cfd48))
+
 ## [1.0.3](https://github.com/naaiyy/Easylink3/compare/v1.0.2...v1.0.3) (2025-01-11)
 
 ### Bug Fixes
