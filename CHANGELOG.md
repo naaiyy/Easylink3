@@ -1,3 +1,9 @@
+## [1.0.3](https://github.com/naaiyy/Easylink3/compare/v1.0.2...v1.0.3) (2025-01-11)
+
+### Bug Fixes
+
+- Add UI package to workspace for version management ([b0c5ab4](https://github.com/naaiyy/Easylink3/commit/b0c5ab478d4c1390e6cb341605aa0455cb444a3a))
+
 ## [1.0.2](https://github.com/naaiyy/Easylink3/compare/v1.0.1...v1.0.2) (2025-01-11)
 
 ### Bug Fixes
