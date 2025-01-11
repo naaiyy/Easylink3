@@ -1,3 +1,9 @@
+## [1.0.2](https://github.com/naaiyy/Easylink3/compare/v1.0.1...v1.0.2) (2025-01-11)
+
+### Bug Fixes
+
+- Update workspace type-checking and package configurations ([0110e51](https://github.com/naaiyy/Easylink3/commit/0110e513762ccaa2ef08d168dd2d135a51678361))
+
 ## [1.0.1](https://github.com/naaiyy/Easylink3/compare/v1.0.0...v1.0.1) (2025-01-11)
 
 ### Bug Fixes
