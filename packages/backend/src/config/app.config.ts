@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-declare const process: any;
+import process from 'process';
 
 export default () => ({
   port: parseInt(process.env.PORT, 10) || 3000,
