@@ -65,10 +65,20 @@ jobs:
           echo "Running ESLint..."
           pnpm eslint . --max-warnings 0
 
-      - name: Type check
+      - name: Type check shared package
         run: |
-          echo "Running TypeScript checks..."
-          pnpm tsc --noEmit || exit 0  # Make it optional during initial setup
+          echo "Type checking shared package..."
+          pnpm --filter "@easylink/shared" type-check
+
+      - name: Type check ui package
+        run: |
+          echo "Type checking ui package..."
+          pnpm --filter "@easylink/ui" type-check
+
+      - name: Validate workspace dependencies
+        run: |
+          echo "Validating workspace dependencies..."
+          pnpm dedupe --check
 
       - name: Generate documentation
         run: |
