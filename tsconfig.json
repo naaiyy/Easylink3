@@ -16,6 +16,7 @@
     "incremental": true,
     "sourceMap": true,
     "declarationMap": true,
+    "declaration": true,
     "paths": {
       "@easylink/*": ["./packages/*"]
     }
