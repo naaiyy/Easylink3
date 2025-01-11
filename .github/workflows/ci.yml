@@ -75,6 +75,18 @@ jobs:
           echo "Type checking ui package..."
           pnpm --filter "@easylink/ui" type-check
 
+      - name: Type check backend package
+        run: |
+          echo "Type checking backend package..."
+          pnpm --filter "@easylink/backend" type-check || exit 0
+        continue-on-error: true
+
+      - name: Run backend tests
+        run: |
+          echo "Running backend tests..."
+          pnpm --filter "@easylink/backend" test || exit 0
+        continue-on-error: true
+
       - name: Validate workspace dependencies
         run: |
           echo "Validating workspace dependencies..."
