@@ -1,35 +1,51 @@
-# macOS system files
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
+# Dependencies
+node_modules
+.pnpm-store/
 
-# Node.js
-node_modules/
+# Build outputs
+dist
+build
+.next
+*.tsbuildinfo
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# IDE
+.idea
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+
+# Testing
+coverage
+.nyc_output
+
+# Debug
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+pnpm-debug.log*
 
-# pnpm specific
-.pnpm-debug.log
-.pnpm-store/
+# System
+.DS_Store
+*.pem
 
-# Environment variables
-.env
-.env.local
-.env.*.local
+# Misc
+*.log
+.cache
+.temp
 
-# IDE specific files
-.idea/
-.vscode/
-*.swp
-*.swo
+# Prisma
+*.db
+*.db-journal
 
-# Act configuration
-.actrc
-.act/.secrets/
+# TypeDoc
+docs
 
-# TypeScript
-*.tsbuildinfo
-dist/
+# Playwright
+test-results/
+playwright-report/
+playwright/.cache/
