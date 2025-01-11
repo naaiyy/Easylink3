@@ -144,9 +144,6 @@ jobs:
     needs: setup
     name: Type Check
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        package: ['shared', 'ui', 'frontend', 'backend']
     outputs:
       type-check-time: ${{ steps.timing.outputs.timing }}
     steps:
@@ -183,8 +180,19 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Type check
-        run: pnpm --filter "@easylink/${{ matrix.package }}" type-check
+      - name: Type check all packages
+        run: |
+          echo "Type checking shared package..."
+          pnpm --filter "@easylink/shared" type-check
+
+          echo "Type checking ui package..."
+          pnpm --filter "@easylink/ui" type-check
+
+          echo "Type checking frontend package..."
+          pnpm --filter "@easylink/frontend" type-check
+
+          echo "Type checking backend package..."
+          pnpm --filter "@easylink/backend" type-check
 
       - name: Record Timing
         id: timing
@@ -192,7 +200,7 @@ jobs:
           END_TIME=$(date +%s%N)
           DURATION=$((($END_TIME - ${{ env.START_TIME }}) / 1000000))
           echo "timing=$DURATION" >> $GITHUB_OUTPUT
-          echo "Type check job for ${{ matrix.package }} took $DURATION ms"
+          echo "Type check job took $DURATION ms"
 
   test:
     needs: setup
